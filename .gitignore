@@ -1,0 +1,10 @@
+./tempest example_files
+./tiles
+geckodriver.*
+*.log
+chromedriver
+*.html
+__pycache__
+./venv
+
+.DS_Store
