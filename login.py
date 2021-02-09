@@ -7,7 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 from finditems import grasp
 
-OS = "DOS"
+OS = "UNIX"
 pets = [0,0,0,0]
 shop = 0
 stash = 0

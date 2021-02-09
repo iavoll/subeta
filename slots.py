@@ -52,7 +52,6 @@ def headless_play(s, hash_sub=None):
             r = s.get(slots_url, timeout=1)
             hash_sub = slots_hash.findall(r.text)[0]
         r = s.post(slots_url, timeout=1, data=dict(hash_sub=hash_sub, act="spin")).text
-        headless_grasp(s, r)
         if "Oops, you have too many items in your" in r:
             headless_restock(s)
             return None

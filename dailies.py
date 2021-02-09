@@ -131,10 +131,6 @@ def mage_quests(): # post-quests
         pass
 
 
-def mallarchy_pond(): # > once daily
-    load_url(f"https://subeta.net/explore/carnival_mallarchypond.php?duck={randrange(1,26)}")
-
-
 def mind_reader():
     def move():
         try:
@@ -183,7 +179,6 @@ if __name__ == "__main__":
 
     def hourly():
         train()
-        mallarchy_pond()
         underground_fish()
         galley()
         jankenpon()
@@ -209,7 +204,7 @@ if __name__ == "__main__":
     if 'hour' in toggle:
         while True:
             hourly()
-            time.sleep(1800)
+            time.sleep(3600)
     # elif 'train' in toggle:
     else:
         daily()

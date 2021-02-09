@@ -25,21 +25,21 @@ def check_account(s, item_name):
         item_id = item_id_pattern.findall(r.text)[0]
     except:
         check_account(s, item_name)
-    if "found in your gallery" in r.text:
-        r = s.post(search_url, data={
-            "remove": item_id,
-            "loc": "gallery",
-            "id": stash
-        })
-        print(item_name, "found in gallery")
-        return True
-    elif "found in your shop" in r.text:
+    if "found in your shop" in r.text:
         r = s.post(search_url, data={
             "remove": item_id,
             "loc": "shop",
             "id": shop
         })
         print(item_name, "found in shop")
+        return True
+    elif "found in your gallery" in r.text:
+        r = s.post(search_url, data={
+            "remove": item_id,
+            "loc": "gallery",
+            "id": stash
+        })
+        print(item_name, "found in gallery")
         return True
     return False
 

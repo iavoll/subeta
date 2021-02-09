@@ -3,7 +3,7 @@ import requests
 import re
 import time
 
-from login import headless_login, shop
+from login import headless_login, stash, shop
 
 snowball_purchase_url = "https://subeta.net/ss.php/snowballs/buy"
 snowtapult_url = "https://subeta.net/explore/snowball.php?act=use&snowball="
@@ -21,13 +21,10 @@ def buy(s, item_id, last_bought):
     }
     r = s.post(snowball_purchase_url, data=data)
     if "Oh No!" in r.text:
-        delay = (datetime.now() - last_bought)
-        print("failed to buy", delay)
         # print("failed to buy", error.findall(r.text))
-        delay = delay / timedelta(microseconds=1)
-        # time.sleep(max(30000000 - delay, 0) * .000001)
-        time.sleep(max(5000000 - delay, 0) * .000001)
-        return buy(s, item_id, datetime.now())
+        delay = (datetime.now() - last_bought) / timedelta(microseconds=1)
+        time.sleep(max(30000000 - delay, 0) * .000001)
+        buy(s, item_id, datetime.now())
     # print("successfully bought")
     # print(datetime.now())
     return datetime.now()
@@ -60,7 +57,6 @@ def loop(s, item_name, last_bought, last_thrown):
     throw = fire(s, item_name, last_thrown)
     # if throw:
     #     time.sleep(5)
-    time.sleep(5)
     return purchase, throw
 
 
@@ -70,6 +66,7 @@ if __name__ == "__main__":
     last_thrown = datetime.now()
     while True:
         last_thrown = fire(s, "Frosty Snowball", last_thrown)
+        print("last thrown", last_thrown)
         time.sleep(4)
         # last_bought, last_thrown = loop(s, "Spidery Snowball", last_bought, last_thrown)
 

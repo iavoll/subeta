@@ -60,7 +60,7 @@ def shopping_page():
             click(item)
             try:
                 WebDriverWait(driver, 15).until(
-                    EC.visibility_of_element_located((By.ID, "purchasedContainer"))
+                    lambda x: EC.presence_of_element_located((By.ID, "purchasedContainer"))
                 )
             except:
                 driver.refresh()
@@ -178,7 +178,7 @@ def loop(quests, done):
         #             click(driver.find_element_by_css_selector("input[value='Exchange your tokens automatically!']"))
         #         break
         # src = driver.page_source
-        quests_complete = ['10/10', '15/15', '16/16', '16/15', '5/5', 'that much sP']
+        quests_complete = ['10/10', '15/15', '16/16', '5/5', 'that much sP']
         while not any(x in src for x in quests_complete):
             src = doQuest(url)
         done.append(quest)

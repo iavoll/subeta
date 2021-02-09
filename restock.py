@@ -20,7 +20,6 @@ if target:
     except:
         budget = None
         description = str(target[0])
-        print(description)
 else:
     budget = None
     description = None
